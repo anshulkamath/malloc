@@ -49,4 +49,14 @@ int is_heap_clear();
  */
 void *calloc(size_t count, size_t size);
 
+/**
+ * @brief Reallocates the memory for `ptr` to a new place with the size
+ *        `size.`
+ * 
+ * @param ptr   A pointer to the memory to reallocate
+ * @param size  The new size of the memory
+ * @return void* 
+ */
+void *realloc(void *ptr, size_t size);
+
 #endif

@@ -168,6 +168,35 @@ int test_calloc() {
     return 1;
 }
 
+int test_realloc() {
+    char *arr;
+    int i;
+
+    {
+        arr = malloc(ARR_SIZE);
+    }
+
+    for (i = 0; i < ARR_SIZE; i++)
+        arr[i] = 'a' + i % 26;
+
+    {
+        arr = realloc(arr, ARR_SIZE * 2);
+    }
+
+    for (i = 0; i < ARR_SIZE; i++) {
+        if (arr[i] != 'a' + i % 26) {
+            printf(
+                "\tERROR: realloc did not copy arr properly;"
+                "arr[%d] = %c, but should be %c.\n",
+                i, 'a' + i % 26, arr[i]
+            );
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
 int main() {
     int pass = 1;
 
@@ -176,6 +205,7 @@ int main() {
     pass &= RUN_TEST(test_malloc_complex);
     pass &= RUN_TEST(test_malloc_complex2);
     pass &= RUN_TEST(test_calloc);
+    pass &= RUN_TEST(test_realloc);
 
     if (pass) printf("Passed all tests!\n");
     else printf("Did not pass all tests :(\n");

@@ -218,3 +218,16 @@ void *calloc(size_t count, size_t size) {
     memset(arr, 0, count * size);
     return arr;
 }
+
+void *realloc(void *ptr, size_t size) {
+    size_t old_size = get_block_ptr(ptr)->size;
+    void *temp[old_size];
+    memcpy(temp, ptr, old_size);
+    
+    free(ptr);
+
+    void *new_ptr = malloc(size);
+    memcpy(new_ptr, temp, size);
+
+    return new_ptr;
+}
