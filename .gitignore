@@ -1,0 +1,4 @@
+test-malloc
+malloc
+*.o
+.vscode/
