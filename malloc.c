@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 
 typedef struct meta_block meta_block_t;
 
@@ -210,4 +211,10 @@ int is_heap_clear() {
     }
 
     return 1;
+}
+
+void *calloc(size_t count, size_t size) {
+    void *arr = malloc(count * size);
+    memset(arr, 0, count * size);
+    return arr;
 }

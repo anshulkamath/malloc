@@ -150,6 +150,24 @@ int test_malloc_complex2() {
     return 1;
 }
 
+int test_calloc() {
+    char *arr;
+    int i;
+
+    {
+        arr = calloc(ARR_SIZE, sizeof(char));
+    }
+
+    for (i = 0; i < ARR_SIZE; i++) {
+        if (arr[i] != 0) {
+            printf("\tERROR: calloc did not initialize to 0.\n");
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
 int main() {
     int pass = 1;
 
@@ -157,6 +175,7 @@ int main() {
     pass &= RUN_TEST(test_malloc_simple);
     pass &= RUN_TEST(test_malloc_complex);
     pass &= RUN_TEST(test_malloc_complex2);
+    pass &= RUN_TEST(test_calloc);
 
     if (pass) printf("Passed all tests!\n");
     else printf("Did not pass all tests :(\n");

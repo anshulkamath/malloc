@@ -40,4 +40,13 @@ void free(void *ptr);
 int is_heap_clear();
 #endif
 
+/**
+ * @brief Allocates `count` contiguous objects, each of size `size` and
+ *        returns a pointer to the first one
+ * 
+ * @param count The number of objects to allocate space for
+ * @param size  The size of each object to allocate
+ */
+void *calloc(size_t count, size_t size);
+
 #endif
